@@ -11,7 +11,8 @@
         background-color: #5ccbff;
         /* border: 1px solid black; */
         border-right: 1px solid black;
-        padding: 10px 1rem;
+        padding: 10px 3rem;
+        text-align: center;
 
     }
     .salesarea{
@@ -56,6 +57,14 @@
         background-color:#f0f107;
         border-left: 1px solid black;
     }
+    .text_align
+    {
+        text-align: right;
+        padding-right: 5px;
+    }
+    .breakspace{
+        white-space: nowrap;
+    }
 
 </style>
 </head>
@@ -72,9 +81,9 @@
 <td class="head">MTD H-1</td>
 <td class="head">SID</td>
 <td class="head">MTD</td>
-<td class="head">Achv</td>
-<td class="head">Speed Qty</td>
-<td class="head">Speed</td>
+<td class="head">Achv (%)</td>
+<td class="head breakspace">Speed Qty <br>Kg</td>
+<td class="head">Speed (%)</td>
 </tr>
 @foreach ($tbl_free_market_report as $key => $free_market)
 
@@ -101,13 +110,13 @@
 <tr class="{{ $free_market->seqno%3==0 ? 'category3':'' }}">
 <td class={{ $free_market->salesarea == $tbl_free_market_report[0]->group||$free_market->salesarea == "**"? 'total':'salesarea' }}>{{ $free_market->salesarea }}</td>
 <td class="{{ $category}}">{{ $free_market->category }}</td>
-<td class="{{ $category}}">{{ $free_market->target }}</td>
-<td class="{{ $category}}">{{ $free_market->mtdh1 }}</td>
-<td class="{{ $category}}">{{ $free_market->sid }}</td>
-<td class="{{ $category}}">{{ $free_market->mtd }}</td>
-<td class="{{ $category}}">{{ $free_market->achv }}</td>
-<td class="{{ $category}}">{{ $free_market->speedqty }}</td>
-<td class="{{ $category}}">{{ $free_market->speed }}</td>
+<td class="{{ $category}} text_align">{{ $free_market->target }}</td>
+<td class="{{ $category}} text_align">{{ $free_market->mtdh1 }}</td>
+<td class="{{ $category}} text_align">{{ $free_market->sid }}</td>
+<td class="{{ $category}} text_align">{{ $free_market->mtd }}</td>
+<td class="{{ $category}} text_align">{{ $free_market->achv }}</td>
+<td class="{{ $category}} text_align">{{ $free_market->speedqty }}</td>
+<td class="{{ $category}} text_align">{{ $free_market->speed }}</td>
 </tr>
 @endforeach
 </table>
