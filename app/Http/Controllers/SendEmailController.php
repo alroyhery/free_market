@@ -34,6 +34,7 @@ class SendEmailController extends Controller
 
 
 
+
         Mail::to($email)->send(new Report23($group, $filename, $bodyemail));
 
 

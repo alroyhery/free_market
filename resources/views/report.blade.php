@@ -121,5 +121,7 @@
 @endforeach
 </table>
 
+<h3 class="text_align"> Reporting Date : {{ $reportdates }}</h3>
+
 </body>
 </html>

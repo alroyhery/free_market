@@ -6,6 +6,7 @@ use App\Models\Report; //load report model
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Spatie\Browsershot\Browsershot;
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -19,6 +20,7 @@ class ReportController extends Controller
         $group = $request->group;
         $tbl_free_market_report = Report::where('group', '=', $group)
                                     ->get();
+        $reportdates = Carbon::now()->format("Y.m.d");
 
 
         // where('group', '=', $group)
@@ -30,7 +32,7 @@ class ReportController extends Controller
 
 
 
-        return view('report', compact('tbl_free_market_report'));
+        return view('report', compact('tbl_free_market_report','reportdates'));
     }
 
     public function screenshot()
