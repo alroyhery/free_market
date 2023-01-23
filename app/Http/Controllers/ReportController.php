@@ -17,7 +17,8 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         $group = $request->group;
-        $tbl_free_market_report = Report::get();
+        $tbl_free_market_report = Report::where('group', '=', $group)
+                                    ->get();
 
 
         // where('group', '=', $group)

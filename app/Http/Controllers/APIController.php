@@ -88,16 +88,26 @@ class APIController extends Controller
     {
         $email = $request->email;
         $group = $request->group;
+        $bodyemail = $request->bodyemail;
 
 
-        $sendemail = Http::post('http://localhost/example-app/public/api/sendEmailBody', [
-            'email' => $email,
-            'group' => $group
-        ]);
+
+
+
+        // $sendemail = Http::post('http://localhost/example-app/public/api/sendEmailBody', [
+        //     'email' => $email,
+        //     'group' => $group
+        // ]);
+
+        $emailparameter ="";
+        foreach($email as $emailparam){
+            $emailparameter.="email[]=".$emailparam."&";
+        }
+
 
 
         $command = 'curl http://localhost/example-app/public/api/sendEmailBody --insecure -G -d ';
-        $param   = ' "group=' . $group .'&email=' . $email . '" ';
+        $param   = ' "group=' . $group .'&email=' . $emailparameter . '&bodyemail='.$bodyemail . '" ';
 
 
 
@@ -106,6 +116,7 @@ class APIController extends Controller
                     } else {
                         exec($command . $param . " > /dev/null &");
                     }
+                    // echo ($command . $param . " > /dev/null &");
                     echo "executed";
 
 

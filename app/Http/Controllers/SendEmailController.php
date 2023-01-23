@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Report23;
-
+use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 
 class SendEmailController extends Controller
 {
@@ -28,12 +29,18 @@ class SendEmailController extends Controller
     {
         $email = $request->email;
         $group = $request->group;
+        $bodyemail = $request->bodyemail;
+        $filename = Carbon::now()->format("Y-m-d").".png";
 
-        // foreach ($email as $recipient) {
-        Mail::to($email)->send(new Report23($group));
-        // }
+
+
+        Mail::to($email)->send(new Report23($group, $filename, $bodyemail));
+
 
         echo "email is sent";
+
+
+        File::delete($filename);
 
     }
 }

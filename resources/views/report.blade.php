@@ -72,7 +72,7 @@
 <table class="headcontainer">
     <h3 class="flex title"> Daily Sales Report Free Market (in Kg)</h3>
 <h3>{{ $tbl_free_market_report[0]->group }}</h3>
-<h3>{{ $tbl_free_market_report[0]->period }}</h3>
+<h3>Reporting date : {{ $tbl_free_market_report[0]->period }}</h3>
 
 <tr >
 <td class="head">Sales Area</td>
@@ -120,5 +120,6 @@
 </tr>
 @endforeach
 </table>
+
 </body>
 </html>

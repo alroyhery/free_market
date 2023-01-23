@@ -7,7 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    hi
-    <img src="data:image/png;base64,{{ $image }}">
+    {!! $bodyemail !!}
+    {{-- <img src="https://images.unsplash.com/photo-1673359193906-b6694fdc0139?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=389&q=80"> --}}
+    <img src="{{ $message->embed($filename) }}">
 </body>
 </html>

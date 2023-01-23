@@ -7,19 +7,24 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Spatie\Browsershot\Browsershot;
+use Carbon\Carbon;
 
 class Report23 extends Mailable
 {
     use Queueable, SerializesModels;
 protected $group;
+public $filename;
+public $bodyemail;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($group)
+    public function __construct($group, $filename, $bodyemail)
     {
         $this->group = $group;
+        $this->filename = $filename;
+        $this->bodyemail = $bodyemail;
     }
 
     /**
@@ -29,14 +34,22 @@ protected $group;
      */
     public function build()
     {
+        Browsershot::url("http://localhost/example-app/public/report?group={$this->group}")->windowSize(1300, 480)
+                                                                                           ->save($this->filename);
 
-       return $this->from('patrick@gmail.com')
+        // $file = \Storage::path("C:\xampp1\htdocs\example-app\public\gambar.png");
+       return $this->from('ict.no-reply@cpp.co.id')
                    ->view('mail')
                    ->with(
                     [
-                        'image' =>  Browsershot::url("http://localhost/example-app/public/report?group={$this->group}")->base64Screenshot()
+                        'image' =>  Browsershot::url("http://localhost/example-app/public/report?group={$this->group}")->screenshot()
 
                     ]);
+
+                //  ->attach($file);
+
+
+
     }
 }
 

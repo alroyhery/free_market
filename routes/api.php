@@ -23,4 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('report', ReportController::class);
 Route::post('getParameter', [APIController::class, 'getParameter']);
-Route::post('sendEmailBody', [SendEmailController::class, 'sendEmailBody']);
+Route::get('sendEmailBody', [SendEmailController::class, 'sendEmailBody']);
+
