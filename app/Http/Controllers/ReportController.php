@@ -20,7 +20,7 @@ class ReportController extends Controller
         $group = $request->group;
         $tbl_free_market_report = Report::where('group', '=', $group)
                                     ->get();
-        $reportdates = Carbon::now()->format("Y.m.d");
+        $reportdates = Carbon::now()->format("d.m.Y");
 
 
         // where('group', '=', $group)

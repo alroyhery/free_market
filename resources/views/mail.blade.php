@@ -12,3 +12,5 @@
     <img src="{{ $message->embed($filename) }}">
 </body>
 </html>
+
+

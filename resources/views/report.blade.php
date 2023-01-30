@@ -65,6 +65,16 @@
     .breakspace{
         white-space: nowrap;
     }
+    .kosong{
+        height: 10px;
+        border-right: 1px solid black;
+        border-left: 1px solid black;
+    }
+    .totalnational{
+        border-top: 1px solid black;
+        border-left: 1px solid black;
+        background-color:#f0f107;
+    }
 
 </style>
 </head>
@@ -74,7 +84,7 @@
 <h3>{{ $tbl_free_market_report[0]->group }}</h3>
 <h3>Reporting date : {{ $tbl_free_market_report[0]->period }}</h3>
 
-<tr >
+<tr>
 <td class="head">Sales Area</td>
 <td class="head">Category</td>
 <td class="head">Target</td>
@@ -89,12 +99,12 @@
 
 @php
     $category ="";
-    if($free_market->category == "Total" && $free_market->salesarea =="")
+    if(strtolower($free_market->category) == "total" && $free_market->salesarea =="")
     {
         $category = "category3";
 
     }
-    else if($free_market->salesarea == $tbl_free_market_report[0]->group && $free_market->category != "Total")
+    else if($free_market->salesarea == $tbl_free_market_report[0]->group && strtolower($free_market->category) != "total")
     {
         $category = "total";
     }
@@ -102,12 +112,36 @@
     {
         $category = "totalkuning";
     }
+    else if($free_market->salesarea == $tbl_free_market_report[0]->group && strtolower($free_market->category) == "total")
+    {
+        $category = "totalnational";
+    }
     else{
         $category = "category1";
     }
+
 @endphp
 
-<tr class="{{ $free_market->seqno%3==0 ? 'category3':'' }}">
+
+@if ($free_market->salesarea !="" && strtolower($free_market->category) == "total" && strtolower($tbl_free_market_report[0]->group) == "national")
+    <tr class="">
+<td class="kosong"></td>
+<td class="kosong"></td>
+<td class="kosong text_align"></td>
+<td class="kosong text_align"></td>
+<td class="kosong text_align"></td>
+<td class="kosong text_align"></td>
+<td class="kosong text_align"></td>
+<td class="kosong text_align"></td>
+<td class="kosong text_align"></td>
+</tr>
+
+
+@else
+
+@endif
+
+<tr class="">
 <td class={{ $free_market->salesarea == $tbl_free_market_report[0]->group||$free_market->salesarea == "**"? 'total':'salesarea' }}>{{ $free_market->salesarea }}</td>
 <td class="{{ $category}}">{{ $free_market->category }}</td>
 <td class="{{ $category}} text_align">{{ $free_market->target }}</td>
