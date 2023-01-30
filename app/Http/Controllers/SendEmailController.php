@@ -31,11 +31,20 @@ class SendEmailController extends Controller
         $group = $request->group;
         $bodyemail = $request->bodyemail;
         $filename = Carbon::now()->format("Y-m-d").".png";
+        $arraypush = array();
+
+        foreach($email as $emailpush){
+            array_push($arraypush, $emailpush);
+        }
 
 
 
 
-        Mail::to($email)->send(new Report23($group, $filename, $bodyemail));
+
+
+
+
+        Mail::to($arraypush)->send(new Report23($group, $filename, $bodyemail));
 
 
         echo "email is sent";

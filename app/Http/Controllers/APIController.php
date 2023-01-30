@@ -89,6 +89,12 @@ class APIController extends Controller
         $email = $request->email;
         $group = $request->group;
         $bodyemail = $request->bodyemail;
+        $arraypush = array();
+
+        foreach($email as $emailpush){
+            array_push($arraypush, $emailpush);
+        }
+
 
 
 
@@ -100,14 +106,14 @@ class APIController extends Controller
         // ]);
 
         $emailparameter ="";
-        foreach($email as $emailparam){
+        foreach($arraypush as $emailparam){
             $emailparameter.="email[]=".$emailparam."&";
         }
 
 
 
         $command = 'curl http://localhost/example-app/public/api/sendEmailBody --insecure -G -d ';
-        $param   = ' "group=' . $group .'&email=' . $emailparameter . '&bodyemail='.$bodyemail . '" ';
+        $param   = ' "group=' . $group .'&' . $emailparameter . '&bodyemail='.$bodyemail . '" ';
 
 
 
