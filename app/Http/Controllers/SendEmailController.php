@@ -10,26 +10,14 @@ use Illuminate\Support\Facades\File;
 
 class SendEmailController extends Controller
 {
-    // public function send()
-    // {
-    //     $data = array('name' => 'huba huba');
 
-    //     Mail::send(['text' => 'mail'], $data, function($message){
-
-    //         $message->to('prq@gmail.com','Huba huba')->subject('tutorial');
-    //         $message->from('xyz@gmail.com','patrick');
-
-    //     });
-
-    //     echo "email is sent";
-
-    // }
 
     public function sendEmailBody(Request $request)
     {
         $email = $request->email;
         $group = $request->group;
         $bodyemail = $request->bodyemail;
+        $subject = $request->subject;
         $filename = Carbon::now()->format("Y-m-d").".png";
         $arraypush = array();
 
@@ -44,7 +32,7 @@ class SendEmailController extends Controller
 
 
 
-        Mail::to($arraypush)->send(new Report23($group, $filename, $bodyemail));
+        Mail::to($arraypush)->send(new Report23($group, $filename, $bodyemail, $subject));
 
 
         echo "email is sent";

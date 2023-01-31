@@ -15,16 +15,18 @@ class Report23 extends Mailable
 protected $group;
 public $filename;
 public $bodyemail;
+public $subject;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($group, $filename, $bodyemail)
+    public function __construct($group, $filename, $bodyemail, $subject)
     {
         $this->group = $group;
         $this->filename = $filename;
         $this->bodyemail = $bodyemail;
+        $this->subject = $subject;
     }
 
     /**
@@ -40,6 +42,7 @@ public $bodyemail;
         // $file = \Storage::path("C:\xampp1\htdocs\example-app\public\gambar.png");
        return $this->from('ict.no-reply@cpp.co.id')
                    ->view('mail')
+                   ->subject($this->subject)
                    ->with(
                     [
                         'image' =>  Browsershot::url("http://localhost/example-app/public/report?group={$this->group}")->screenshot()

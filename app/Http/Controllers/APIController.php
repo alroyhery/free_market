@@ -89,6 +89,7 @@ class APIController extends Controller
         $email = $request->email;
         $group = $request->group;
         $bodyemail = $request->bodyemail;
+        $subject = $request->subject;
         $arraypush = array();
 
         foreach($email as $emailpush){
@@ -113,7 +114,7 @@ class APIController extends Controller
 
 
         $command = 'curl http://localhost/example-app/public/api/sendEmailBody --insecure -G -d ';
-        $param   = ' "group=' . $group .'&' . $emailparameter . '&bodyemail='.$bodyemail . '" ';
+        $param   = ' "group=' . $group .'&' . $emailparameter .  'subject='. $subject .'&bodyemail='.$bodyemail . '" ';
 
 
 
@@ -122,7 +123,7 @@ class APIController extends Controller
                     } else {
                         exec($command . $param . " > /dev/null &");
                     }
-                    // echo ($command . $param . " > /dev/null &");
+                    echo ($command . $param . " > /dev/null &");
                     echo "executed";
 
 
