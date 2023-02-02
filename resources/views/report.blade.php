@@ -116,6 +116,10 @@
     {
         $category = "totalnational";
     }
+    else if($free_market->salesarea != $tbl_free_market_report[0]->group && strtolower($free_market->category) == "total")
+    {
+        $category = "category3";
+    }
     else{
         $category = "category1";
     }

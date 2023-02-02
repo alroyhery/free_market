@@ -123,7 +123,7 @@ class APIController extends Controller
                     } else {
                         exec($command . $param . " > /dev/null &");
                     }
-                    echo ($command . $param . " > /dev/null &");
+                    // echo ($command . $param . " > /dev/null &");
                     echo "executed";
 
 
