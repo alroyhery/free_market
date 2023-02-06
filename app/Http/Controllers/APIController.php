@@ -96,6 +96,11 @@ class APIController extends Controller
             array_push($arraypush, $emailpush);
         }
 
+        if(!isset($email) || !isset($group) || !isset($bodyemail) || !isset($subject)){
+            echo "parameter empty";
+            return;
+        }
+
 
 
 
