@@ -90,13 +90,17 @@ class APIController extends Controller
         $group = $request->group;
         $bodyemail = $request->bodyemail;
         $subject = $request->subject;
+        $uom = $request->uom;
         $arraypush = array();
+        // dd($uom);
+
+
 
         foreach($email as $emailpush){
             array_push($arraypush, $emailpush);
         }
 
-        if(!isset($email) || !isset($group) || !isset($bodyemail) || !isset($subject)){
+        if(!isset($email) || !isset($group) || !isset($bodyemail) || !isset($subject) || !isset($uom)){
             echo "parameter empty";
             return;
         }
@@ -119,7 +123,7 @@ class APIController extends Controller
 
 
         $command = 'curl http://localhost/example-app/public/api/sendEmailBody --insecure -G -d ';
-        $param   = ' "group=' . $group .'&' . $emailparameter .  'subject='. $subject .'&bodyemail='.$bodyemail . '" ';
+        $param   = ' "group=' . $group .'&' . $emailparameter .  'subject='. $subject .'&bodyemail='.$bodyemail .'&uom='.$uom . '" ';
 
 
 
@@ -128,7 +132,7 @@ class APIController extends Controller
                     } else {
                         exec($command . $param . " > /dev/null &");
                     }
-                    // echo ($command . $param . " > /dev/null &");
+                    echo ($command . $param . " > /dev/null &");
                     echo "executed";
 
 

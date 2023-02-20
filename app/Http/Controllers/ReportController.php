@@ -18,6 +18,7 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         $group = $request->group;
+        $uom = $request->uom;
         $tbl_free_market_report = Report::where('group', '=', $group)
                                     ->get();
         $reportdates = Carbon::now()->format("d.m.Y");
@@ -32,7 +33,7 @@ class ReportController extends Controller
 
 
 
-        return view('report', compact('tbl_free_market_report','reportdates'));
+        return view('report', compact('tbl_free_market_report','reportdates', 'uom'));
     }
 
     public function screenshot()

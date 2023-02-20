@@ -16,17 +16,19 @@ protected $group;
 public $filename;
 public $bodyemail;
 public $subject;
+public $uom;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($group, $filename, $bodyemail, $subject)
+    public function __construct($group, $filename, $bodyemail, $subject,$uom)
     {
         $this->group = $group;
         $this->filename = $filename;
         $this->bodyemail = $bodyemail;
         $this->subject = $subject;
+        $this->uom = $uom;
     }
 
     /**
@@ -36,7 +38,7 @@ public $subject;
      */
     public function build()
     {
-        Browsershot::url("http://localhost/example-app/public/report?group={$this->group}")->windowSize(1300, 480)
+        Browsershot::url("http://localhost/example-app/public/report?group={$this->group}&uom={$this->uom}")->fullPage()
                                                                                            ->save($this->filename);
 
         // $file = \Storage::path("C:\xampp1\htdocs\example-app\public\gambar.png");
