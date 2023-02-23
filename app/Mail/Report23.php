@@ -2,12 +2,13 @@
 
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-use Spatie\Browsershot\Browsershot;
 use Carbon\Carbon;
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Spatie\Image\Manipulations;
+use Spatie\Browsershot\Browsershot;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class Report23 extends Mailable
 {
@@ -39,6 +40,7 @@ public $uom;
     public function build()
     {
         Browsershot::url("http://localhost/example-app/public/report?group={$this->group}&uom={$this->uom}")->fullPage()
+
                                                                                            ->save($this->filename);
 
         // $file = \Storage::path("C:\xampp1\htdocs\example-app\public\gambar.png");

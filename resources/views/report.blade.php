@@ -3,6 +3,15 @@
 <head>
 <title>View Student Records</title>
 <style>
+    td{
+        font-family: "courier new";
+    }
+    tr{
+        font-family: "courier new";
+    }
+    h3{
+        font-family: "courier new";
+    }
     .title{
         display: flex;
         justify-content: center;
@@ -13,6 +22,15 @@
         border-right: 1px solid black;
         padding: 10px 3rem;
         text-align: center;
+
+    }
+    .headmtd{
+        background-color: #5ccbff;
+        /* border: 1px solid black; */
+        border-right: 1px solid black;
+        padding: 10px 3rem;
+        text-align: center;
+        width: 50px;
 
     }
     .salesarea{
@@ -56,11 +74,13 @@
         border-top: 1px solid black;
         background-color:#fefeb8;
         border-left: 1px solid black;
+        padding-inline-start: 10px;
     }
     .totalkuning{
         border-top: 1px solid black;
         background-color:#f0f107;
         border-left: 1px solid black;
+        padding-inline-start: 10px;
     }
     .text_align
     {
@@ -85,10 +105,14 @@
     .warnabiru{
         background-color: #aee5fb;
     }
+    .size{
+        width: 1350px;
+    }
 
 </style>
 </head>
 <body>
+    <div class="size">
 <table class="headcontainer">
     <h3 class="flex title"> Daily Sales Report Free Market (in {{ $uom }})</h3>
 <h3>{{ $tbl_free_market_report[0]->group }}</h3>
@@ -98,7 +122,7 @@
 <td class="head">Sales Area</td>
 <td class="head">Category</td>
 <td class="head">Target</td>
-<td class="head">MTD H-1</td>
+<td class="headmtd">MTD H-1</td>
 <td class="head">SID</td>
 <td class="head">MTD</td>
 <td class="head">Achv (%)</td>
@@ -185,6 +209,8 @@
 </table>
 
 <h3 class="text_align"> Reporting Date : {{ $reportdates }}</h3>
+
+</div>
 
 </body>
 </html>
