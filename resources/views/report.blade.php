@@ -19,12 +19,16 @@
         background-color:#fefeb8;
         /* border: 1px solid black ; */
         border-right: 1px solid black;
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
     .category1{
         background-color:#fefeb8;
         /* border: 1px solid black ; */
         border-right: 1px solid black;
         border-left: 1px solid black;
+        padding-left: 10px;
 
 
 
@@ -32,6 +36,7 @@
     .category3{
         background-color: #aee5fb;
         /* border: 1px solid black ; */
+        padding-left: 10px;
 
         border-right: 1px solid black;
         border-left: 1px solid black;
@@ -60,7 +65,9 @@
     .text_align
     {
         text-align: right;
-        padding-right: 5px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
     .breakspace{
         white-space: nowrap;
@@ -74,6 +81,9 @@
         border-top: 1px solid black;
         border-left: 1px solid black;
         background-color:#f0f107;
+    }
+    .warnabiru{
+        background-color: #aee5fb;
     }
 
 </style>
@@ -120,8 +130,22 @@
     {
         $category = "category3";
     }
+
     else{
         $category = "category1";
+    }
+
+    if($free_market->salesarea == $tbl_free_market_report[0]->group||$free_market->salesarea == "**"){
+        $category11 = "total";
+
+
+    }
+    else if(strtolower($free_market->category) == "total" && $free_market->salesarea == "")
+    {
+        $category11 = "warnabiru";
+    }
+    else {
+        $category11 = "salesarea";
     }
 
 @endphp
@@ -146,7 +170,8 @@
 @endif
 
 <tr class="">
-<td class={{ $free_market->salesarea == $tbl_free_market_report[0]->group||$free_market->salesarea == "**"? 'total':'salesarea' }}>{{ $free_market->salesarea }}</td>
+{{-- <td class={{ $free_market->salesarea == $tbl_free_market_report[0]->group||$free_market->salesarea == "**"? 'total':'salesarea' }}>{{ $free_market->salesarea }}</td> --}}
+<td class={{ $category11}}>{{ $free_market->salesarea }}</td>
 <td class="{{ $category}}">{{ $free_market->category }}</td>
 <td class="{{ $category}} text_align">{{ $free_market->target }}</td>
 <td class="{{ $category}} text_align">{{ $free_market->mtdh1 }}</td>
